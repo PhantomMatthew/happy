@@ -56,4 +56,4 @@ RUN mkdir -p prisma && ln -s ../packages/happy-server/prisma/migrations prisma/m
 VOLUME /data
 EXPOSE 3005
 
-CMD ["sh", "-c", "node_modules/.bin/tsx packages/happy-server/sources/standalone.ts migrate && exec node_modules/.bin/tsx packages/happy-server/sources/standalone.ts serve"]
+CMD ["sh", "-c", "node_modules/.bin/tsx --tsconfig packages/happy-server/tsconfig.json packages/happy-server/sources/standalone.ts migrate && exec node_modules/.bin/tsx --tsconfig packages/happy-server/tsconfig.json packages/happy-server/sources/standalone.ts serve"]
