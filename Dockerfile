@@ -10,6 +10,7 @@ WORKDIR /repo
 
 COPY package.json yarn.lock ./
 COPY scripts ./scripts
+COPY patches ./patches
 
 RUN mkdir -p packages/happy-app packages/happy-server packages/happy-cli packages/happy-agent packages/happy-wire
 
@@ -50,6 +51,7 @@ ENV PGLITE_DIR=/data/pglite
 COPY --from=builder /repo/node_modules /repo/node_modules
 COPY --from=builder /repo/packages/happy-wire /repo/packages/happy-wire
 COPY --from=builder /repo/packages/happy-server /repo/packages/happy-server
+RUN mkdir -p prisma && ln -s ../packages/happy-server/prisma/migrations prisma/migrations
 
 VOLUME /data
 EXPOSE 3005
